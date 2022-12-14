@@ -168,7 +168,7 @@ cdef _parse_schema(
         return parsed_schemas
 
     # string schemas; this could be either a named schema or a primitive type
-    elif not isinstance(schema, dict):
+    elif not (isinstance(schema, dict) or schema["type"] == "record"):
         if schema in PRIMITIVES:
             if default is not NO_DEFAULT:
                 if (
